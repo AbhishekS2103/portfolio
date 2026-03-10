@@ -474,9 +474,18 @@ body {
   border-radius: var(--radius-pill); border: 1px solid var(--border);
   background: var(--bg-card); color: var(--text-secondary);
   transition: all 0.25s ease; letter-spacing: 0.04em; user-select: none;
+  cursor: pointer;
 }
-.travel-chip:hover { color: var(--text-primary); border-color: rgba(196,168,255,0.4); background: var(--bg-card-hover); }
+.travel-chip:hover { color: var(--accent); border-color: rgba(196,168,255,0.6); background: var(--bg-card-hover); box-shadow: 0 0 12px rgba(196,168,255,0.15); }
 .travel-chip.active { background: rgba(196,168,255,0.12); border-color: rgba(196,168,255,0.5); color: var(--accent-2); }
+.section-hint {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: -8px;
+  margin-bottom: 20px;
+  letter-spacing: 0.03em;
+}
 .travel-hint { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.06em; }
 
 /* ─── CINEMATIC FILM CARDS ───────────────────────────────── */
@@ -721,6 +730,14 @@ body {
 .leaflet-popup-content { margin: 8px 12px !important; font-size: 0.85rem !important; }
 
 /* travel hint */
+.section-hint {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: -8px;
+  margin-bottom: 20px;
+  letter-spacing: 0.03em;
+}
 .travel-hint {
   font-family: var(--font-mono); font-size: 0.72rem;
   color: var(--text-muted); letter-spacing: 0.06em;
@@ -859,7 +876,7 @@ body {
 }
 .about-photo {
   width: 260px;
-  height: 320px;
+  height: 380px;
   object-fit: cover;
   object-position: 50% 0%;
   border-radius: 20px;

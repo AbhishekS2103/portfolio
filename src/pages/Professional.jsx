@@ -38,13 +38,13 @@ const CERTS = [
   },
   {
     num: 3,
-    name: "IEEE CCEM 2023 — Conference Certificate",
+    name: "IEEE CCEM 2023: Conference Certificate",
     sub: "IEEE · Cloud Computing in Emerging Markets",
     link: null,  // no verify link — image only
   },
   {
     num: 4,
-    name: "LTIMindtree Certified — Cloud & Infrastructure Services Professional",
+    name: "LTIMindtree Certified: Cloud & Infrastructure Services Professional",
     sub: "LTIMindtree · Oct 2024",
     link: null,  // no verify link — image only
   },
@@ -284,7 +284,7 @@ function Professional() {
                 IEEE-published research paper presenting a lightweight deep learning model
                 for medicinal flower classification. The model achieved 98.23% accuracy on
                 a dataset of 3,343 images across 13 flower classes. Published at INDIACom 2024
-                — 11th International Conference on Computing for Sustainable Global Development.
+                , 11th International Conference on Computing for Sustainable Global Development.
               </p>
               <div className="exp-tags" style={{ marginBottom: "20px" }}>
                 <span className="tag">IEEE Published</span><span className="tag">MobileNetV2</span>
@@ -313,10 +313,10 @@ function Professional() {
             <div className="stack-card">
               <span className="project-badge badge-conference">Conference</span>
               <p className="project-num">03</p>
-              <h3 className="project-title">IEEE CCEM 2023 — Student Project Showcase</h3>
+              <h3 className="project-title">IEEE CCEM 2023: Student Project Showcase</h3>
               <p className="project-desc">
                 Presented the project "Classification of Indian Medicinal Flowers Using MobileNetV1"
-                at IEEE CCEM 2023 — 12th International Conference on Cloud Computing in Emerging
+                at IEEE CCEM 2023, 12th International Conference on Cloud Computing in Emerging
                 Markets, Mysuru. Demonstrated the application of deep learning techniques for
                 efficient image classification.
               </p>

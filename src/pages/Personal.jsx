@@ -110,7 +110,7 @@ const FILMS = [
     credit: "Dir. Christopher Nolan",
     filmClass: "film-interstellar",
     hasBgEl: ["stars", "wormhole"],
-    desc: "I've always loved space stories, and this film blends science and emotion better than almost anything else. The father–daughter dynamic and the sheer scale of it make it unforgettable. I went for the re-release screening and have rewatched it several times since — it only gets better.",
+    desc: "I've always loved space stories, and this film blends science and emotion better than almost anything else. The father–daughter dynamic and the sheer scale of it make it unforgettable. I went for the re-release screening and have rewatched it several times since. It only gets better.",
   },
   {
     title: "The Shawshank Redemption",
@@ -118,7 +118,7 @@ const FILMS = [
     credit: "Dir. Frank Darabont",
     filmClass: "film-khan",
     hasBgEl: ["rain"],
-    desc: "The ending genuinely surprised me the first time I watched it. What makes the film special is the human connection — hope, friendship, and quiet resilience. Morgan Freeman's narration adds so much warmth that the whole thing just stays with you.",
+    desc: "The ending genuinely surprised me the first time I watched it. What makes the film special is the human connection: hope, friendship, and quiet resilience. Morgan Freeman's narration adds so much warmth that the whole thing just stays with you.",
   },
   {
     title: "Iruvar",
@@ -134,7 +134,7 @@ const FILMS = [
     credit: "Andy Samberg · Stephanie Beatriz",
     filmClass: "film-b99",
     hasBgEl: ["city-lights"],
-    desc: "Hooked me from the beginning. Andy Samberg in peak goofy form, great ensemble cast, fast-paced comedy — it's one of those shows I binge whenever I want something fun and easy. Endlessly rewatchable.",
+    desc: "Hooked me from the beginning. Andy Samberg in peak goofy form, great ensemble cast, fast-paced comedy. It's one of those shows I binge whenever I want something fun and easy. Endlessly rewatchable.",
   },
 ]
 
@@ -202,8 +202,9 @@ function TravelImg({ src, alt, className, onClick }) {
 function Lightbox({ place, onClose, onNextPlace }) {
   const [active, setActive] = useState(0)
   const total = place.photos.length
+  const safeActive = Math.min(active, total - 1)
   const src   = (i) => `/travel/${place.key}/${encodeURIComponent(place.photos[i])}`
-  const caption = place.photos[active].replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+  const caption = place.photos[safeActive] ? place.photos[safeActive].replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase()) : ""
 
   useEffect(() => { setActive(0) }, [place])
 
@@ -227,9 +228,9 @@ function Lightbox({ place, onClose, onNextPlace }) {
         {/* main image area */}
         <div className="lightbox-img-area">
           <TravelImg
-            key={active}
+            key={safeActive}
             className="lightbox-main-img"
-            src={src(active)}
+            src={src(safeActive)}
             alt={caption}
           />
 
@@ -261,7 +262,7 @@ function Lightbox({ place, onClose, onNextPlace }) {
               {place.photos.map((name, i) => (
                 <TravelImg
                   key={i}
-                  className={`lightbox-thumb ${i === active ? "active" : ""}`}
+                  className={`lightbox-thumb ${i === safeActive ? "active" : ""}`}
                   src={src(i)}
                   alt={name}
                   onClick={() => setActive(i)}
@@ -318,12 +319,12 @@ function Personal() {
           </div>
 
           <p className="personal-intro fade-up fade-up-2">
-            Originally from <em>Kerala, India</em> — I completed my schooling there before
+            Originally from <em>Kerala, India</em>. I completed my schooling there before
             moving to Mysuru for my undergraduate degree. I now live and work in Bengaluru
             while exploring opportunities in data and analytics.
             <br /><br />
             Outside of work, I enjoy travelling, watching films across languages and cultures,
-            and having good conversations — whether about movies, geopolitics, books, or the
+            and having good conversations, whether about movies, geopolitics, books, or the
             occasional conspiracy theory. I might seem a bit reserved at first, but once the
             conversation gets interesting, I can easily switch into an extrovert.
             <br /><br />
@@ -344,7 +345,7 @@ function Personal() {
         <div className="section-content">
           <div className="section-header reveal"><h2 className="section-title">Travel</h2></div>
           <p className="travel-desc reveal">
-            I love travelling — every city adds a new layer of perspective. Kerala will always
+            I love travelling; every city adds a new layer of perspective. Kerala will always
             be home, while Bengaluru is where life is currently happening. Over time, I hope to
             slowly explore all of India, discovering different cultures, landscapes, and stories
             along the way. Beyond India, Spain and Switzerland are high on my travel list.
@@ -362,7 +363,7 @@ function Personal() {
               </button>
             ))}
           </div>
-          <p className="travel-hint reveal" style={{ marginTop: "12px" }}>↑ Tap any place to open photos + map</p>
+          <p className="travel-hint reveal" style={{ marginTop: "12px" }}>↑ Click a place to explore photos</p>
         </div>
       </section>
 
@@ -373,8 +374,16 @@ function Personal() {
           onClose={() => setLightboxPlace(null)}
           onNextPlace={() => {
             const idx = PLACES.findIndex(p => p.key === lightboxPlace.key)
-            const next = PLACES[(idx + 1) % PLACES.length]
-            setLightboxPlace(next)
+            let nextIdx = (idx + 1) % PLACES.length
+            let next = PLACES[nextIdx]
+            // skip places with no photos
+            let attempts = 0
+            while ((!next.photos || next.photos.length === 0) && attempts < PLACES.length) {
+              nextIdx = (nextIdx + 1) % PLACES.length
+              next = PLACES[nextIdx]
+              attempts++
+            }
+            if (next.photos && next.photos.length > 0) setLightboxPlace(next)
           }}
         />
       )}
@@ -391,7 +400,7 @@ function Personal() {
             Nolan, Mani Ratnam, Quentin Tarantino, Martin Scorsese, Sathyan Anthikad, and
             Priyadarshan. I also enjoy binge-watching good series and am currently finishing
             The Office. Next on the watchlist: A Knight of the Seven Kingdoms.
-            A few that stayed with me —
+            A few that stayed with me:
           </p>
           <div className="films-grid">
             {FILMS.map((film, i) => (
@@ -420,11 +429,12 @@ function Personal() {
         <div className="section-content">
           <div className="section-header reveal"><h2 className="section-title">Music</h2></div>
           <p className="music-desc-text reveal">
-            My music taste moves across eras and languages — from classic American pop and
+            My music taste moves across eras and languages, from classic American pop and
             rock to Indian film music. Some days it's the orchestral brilliance of Ilaiyaraaja,
             other days it's A. R. Rahman or Arijit Singh, and sometimes an old-school American
             classic. Here are a few songs that are always on repeat.
           </p>
+          <p className="section-hint reveal">Click a card to play on YouTube</p>
           <div className="songs-grid">
             {SONGS.map((song, i) => (
               <a key={song.title} className={`song-card reveal reveal-delay-${(i % 4) + 1}`} href={song.link} target="_blank" rel="noreferrer">
