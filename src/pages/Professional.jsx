@@ -48,6 +48,12 @@ const CERTS = [
     sub: "LTIMindtree · Oct 2024",
     link: null,  // no verify link — image only
   },
+  {
+    num: 5,
+    name: "FY25 Microsoft 365 Copilot Project Ready Participant",
+    sub: "Microsoft Global Channel Partner Sales (GCPS)",
+    link: "https://www.credly.com/badges/616e9c2e-e268-4d5f-9607-63d4c3fb1461",
+  },
 ]
 
 
@@ -168,13 +174,14 @@ function Professional() {
             <div className="about-card-inner">
             <div className="about-card-text">
             <p className="about-para">
-              <strong>Cloud & Infrastructure Engineer</strong> with experience at LTIMindtree
-              and a <strong>BCA in Data Science</strong> from Amrita Vishwa Vidyapeetham.
-              My work so far has involved enterprise technical support, identity systems like Okta,
+              Aspiring <strong>Data Analyst and Data Scientist</strong> with experience as a
+              Cloud & Infrastructure Engineer at LTIMindtree and a degree in
+              <strong> Computer Applications with Data Science</strong> from Amrita Vishwa Vidyapeetham.
+              My professional experience has involved enterprise technical support, identity systems like Okta,
               and analysing operational data to improve incident resolution.
               <br />
-              Alongside my professional work, I'm actively building projects and strengthening
-              skills in data analytics, machine learning, and data-driven problem solving.
+              I'm actively building projects and strengthening skills in data analytics,
+              machine learning, and data-driven problem solving.
               Currently exploring opportunities in data analytics and data science while
               planning for a future <strong>Master's in Data Science</strong>.
             </p>
